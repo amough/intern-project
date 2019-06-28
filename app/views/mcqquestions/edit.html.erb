@@ -1,0 +1,65 @@
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+</style>
+<h1>Edit MCQ Question</h1>
+ 
+<%= form_with(model: @mcqquestion, local: true) do |form| %>
+ 
+  <% if @mcqquestion.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@mcqquestion.errors.count, "error") %> prohibited
+        this question from being saved:
+      </h2>
+      <ul>
+        <% @mcqquestion.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+ <p>
+    <%= form.label :Question %><br>
+    <%= form.text_area :Question %>
+  </p>
+ 
+  <p>
+    <%= form.label :Option_A %><br>
+    <%= form.text_field :Option_A %>
+  </p>
+
+  <p>
+    <%= form.label :Option_B %><br>
+    <%= form.text_field :Option_B %>
+  </p>
+
+  <p>
+    <%= form.label :Option_c %><br>
+    <%= form.text_field :Option_c %>
+  </p>
+
+  <p>
+    <%= form.label :Option_D %><br>
+    <%= form.text_field :Option_D %>
+  </p>
+
+  <p>
+    <%= form.label :Correct_Option %><br>
+    <!-- /%= form.text_field :Correct_Option %> -->
+    <%=form.select :Correct_Option,['A','B','C','D']%>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back', mcqquestions_path %>
+
+
+
+
+

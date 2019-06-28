@@ -1,0 +1,16 @@
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+</style>
+<h1>Start Your Test</h1>
+<% @mcqquestion.each do |mcqquestion| %>
+    <tr>
+      <td><%= mcqquestion.Question %></td>
+      <td><%= link_to 'Show', mcqquestion_path(mcqquestion) %></td>
+      <p></p>
+    </tr>
+  <% end %>
+
+

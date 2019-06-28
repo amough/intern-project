@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <head>
+         <title>HTML Radio Button</title>
+      </head>
+      <form>
+          <td><%= @mcqquestion.Question %></td>
+          <br/>
+          <input type="radio" name='<%= @mcqquestion.Question %>'value="A" >
+          <td><%= @mcqquestion.Option_A%></td>
+          <br/>
+          <input type="radio" name='<%= mcqquestion.Question %>' value="B">
+          <td><%= mcqquestion.Option_B%></td>
+          <br/>
+          <input type="radio" name='<%= mcqquestion.Question %>' value="C">
+          <td><%= mcqquestion.Option_c%></td>
+          <br/>
+          <input type="radio" name='<%= mcqquestion.Question %>' value="D">
+          <td><%= mcqquestion.Option_D%></td>
+          <br/>
+          </p>
+          <br/>
+        </form>
+    </body>
+  </html>

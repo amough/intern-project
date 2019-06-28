@@ -1,0 +1,29 @@
+<h1 style="color:white;font-size:40px">Are you Ready to Test your Knowledge</h1>
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+</style>
+<% if current_user %>
+    Logged in as <%= current_user.email %>.
+	<% if current_user.email == "admin" %>
+		<p></p>
+		<%= link_to 'MCQ Question Bank', controller: 'mcqquestions' %>
+		<p></p>
+		<%= link_to 'New MCQ Question', new_mcqquestion_path %>
+	<%else%>
+		<p></p>
+		<%= link_to 'Take a Test', controller: 'mcqquestions' %>
+	<% end %>
+	<p></p>
+  	<%= link_to "Log Out", logout_path %>
+<% else %>
+<style>
+body {
+  background-color: black;
+}
+</style>
+    <%= link_to "Sign Up", signup_path %> or 
+    <%= link_to "Log In", login_path %>
+<% end %>

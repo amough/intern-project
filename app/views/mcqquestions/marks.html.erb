@@ -1,0 +1,24 @@
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+</style>
+<%= link_to 'Home Page', welcome_index_path %>
+<br/>
+<td>Your Marks : </td>
+<%= @marks %>
+<table>
+<tr>
+	<td>Your answer</td>
+	<td>Correct answer</td>
+</tr>
+<% @answers.each do |ans| %>
+<tr>
+	<td><%= ans[:user_ans]%></td>
+	<td><%= ans[:correct_ans]%></td>
+</tr>
+<% end %>
+</table>
+<%= link_to 'Take a New Test', controller: 'mcqquestions' %>
+<br/>

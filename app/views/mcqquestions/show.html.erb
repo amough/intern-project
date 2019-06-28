@@ -1,0 +1,101 @@
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+</style>
+<% if current_user.email == "admin" %>
+<p>
+  <strong>Question:</strong>
+  <%= @mcqquestion.Question %>
+</p>
+ 
+<p>
+  <strong>Option A:</strong>
+  <%= @mcqquestion.Option_A %>
+</p>
+
+<p>
+  <strong>Option B:</strong>
+  <%= @mcqquestion.Option_B %>
+</p>
+
+<p>
+  <strong>Option C:</strong>
+  <%= @mcqquestion.Option_c %>
+</p>
+
+<p>
+  <strong>Option D:</strong>
+  <%= @mcqquestion.Option_D %>
+</p>
+
+<p>
+  <strong>Correct Option:</strong>
+  <%= @mcqquestion.Correct_Option %>
+</p>
+<%= link_to 'Edit', edit_mcqquestion_path(@mcqquestion) %> 
+|
+<%= link_to 'Back', mcqquestions_path %>
+<% else %>
+<html>
+   <body>
+      <head>
+         <title>HTML Radio Button</title>
+        <td><%= @mcqquestion.Question %></td><br/>
+      </head>
+      <%= form_tag("/mcqquestions/submit_answer/#{@mcqquestion.id}",method: :post) do  %> 
+        <%= radio_button_tag 'answer','A' %>
+         <td><%= @mcqquestion.Option_A%></td><br>
+        <%= radio_button_tag 'answer','B' %>
+         <td><%= @mcqquestion.Option_B%></td><br>
+        <%= radio_button_tag 'answer','C' %>
+         <td><%= @mcqquestion.Option_c%></td><br>
+        <%= radio_button_tag 'answer','D' %>
+         <td><%= @mcqquestion.Option_D%></td><br>
+        <%= submit_tag "submit" %>
+      <%end%>
+     <!--  <form>
+          <td><%= @mcqquestion.Question %></td>
+          <br/>
+          <input type="radio" name='<%= @mcqquestion.Question %>'value="A" >
+          <td><%= @mcqquestion.Option_A%></td>
+          <br/>
+          <input type="radio" name='<%= @mcqquestion.Question %>' value="B">
+          <td><%= @mcqquestion.Option_B%></td>
+          <br/>
+          <input type="radio" name='<%= @mcqquestion.Question %>' value="C">
+          <td><%= @mcqquestion.Option_c%></td>
+          <br/>
+          <input type="radio" name='<%= @mcqquestion.Question %>' value="D">
+          <td><%= @mcqquestion.Option_D%></td>
+          <br/>
+          <input type="button" onclick="myFunction()" value="Submit Answer">
+          <input type="hidden" id="answer" value='<%= @mcqquestion.Correct_Option %>'>
+          <br><br>
+          <h2 id="result"></h2>
+          <script>
+          function myFunction()   
+            {
+            var coffee = document.forms[0];
+            var i;
+            for (i = 0; i < coffee.length; i++) 
+              {
+              if (coffee[i].checked) 
+                {    
+                if(coffee[i].value == document.getElementById("answer").value)
+                  {
+                  document.getElementById('result').innerHTML = "Correct Answer";
+                  }
+                else
+                  {
+                  document.getElementById('result').innerHTML = "Wrong Answer";
+                  }
+                }
+              }
+            }
+          </script>
+        </form>
+    --> </body>
+  </html>
+<% end %>

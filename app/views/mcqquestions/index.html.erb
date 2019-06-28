@@ -1,0 +1,58 @@
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+</style>
+<% if current_user.email == "admin" %>
+<h1>Listing MCQ Questions</h1>
+ <%= link_to 'New MCQ Question', new_mcqquestion_path %>
+ <br/>
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Option A</th>
+    <th>Option B</th>
+    <th>Option C</th>
+    <th>Option D</th>
+    <th colspan="2"></th>
+    <th></th>
+  </tr>
+ 
+  <% @mcqquestion.each do |mcqquestion| %>
+    <tr>
+      <td><%= mcqquestion.Question %></td>
+      <td><%= mcqquestion.Option_A %></td>
+      <td><%= mcqquestion.Option_B %></td>
+      <td><%= mcqquestion.Option_c %></td>
+      <td><%= mcqquestion.Option_D %></td>
+      <td><%= link_to 'Show', mcqquestion_path(mcqquestion) %></td>
+      <td><%= link_to 'Edit', edit_mcqquestion_path(mcqquestion) %></td>
+      <td><%= link_to 'Destroy', mcqquestion_path(mcqquestion),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+ <%= link_to 'Back', welcome_index_path %>
+<% else %>
+<h1>Start Your Test</h1>
+<%= form_tag("/mcqquestions/submit_answer",method: :post) do  %> 
+<% @mcq.each do |mcqquestion| %>
+    <tr>
+        <br/>
+        <td><%= mcqquestion.Question %></td>
+        <br/>
+        <%= radio_button_tag "#{mcqquestion.id}_answer",'A' %>
+         <td><%= mcqquestion.Option_A%></td><br>
+        <%= radio_button_tag "#{mcqquestion.id}_answer",'B' %>
+         <td><%= mcqquestion.Option_B%></td><br>
+        <%= radio_button_tag "#{mcqquestion.id}_answer",'C' %>
+         <td><%= mcqquestion.Option_c%></td><br>
+        <%= radio_button_tag "#{mcqquestion.id}_answer",'D' %>
+         <td><%= mcqquestion.Option_D%></td><br>
+    </tr>
+  <% end %>
+  <%= submit_tag 'submit' %>
+  <% end %>
+<% end %>
